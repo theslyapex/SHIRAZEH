@@ -229,6 +229,70 @@
 @media(max-width:650px){.top{gap:8px}.studio-cta{padding:10px 11px;gap:6px;font-size:11px}.studio-orb{width:22px;height:22px}.brand-copy{font-size:13px}.logo{width:42px;height:42px}.footer-bottom{flex-direction:column;align-items:flex-start}.powered-link{align-self:flex-start}}
 @media(prefers-reduced-motion:reduce){.site-header,.studio-cta:before,.studio-orb,.powered-link span,.hero:before{animation:none!important}.motion-ready .reveal{opacity:1!important;transform:none!important;transition:none!important}}
 
+
+/* SHIRAZEH responsive and template-aware resume output */
+.rskill{min-width:0;break-inside:avoid;page-break-inside:avoid}
+.rskilltop{align-items:center;gap:8px}
+.skill-value{font-weight:800;color:var(--resaccent);font-variant-numeric:tabular-nums}
+.bar{height:7px;border-radius:99px;background:#e6e9f2;overflow:hidden;position:relative}
+.bar i{height:100%;display:block;border-radius:inherit;background:linear-gradient(90deg,var(--resaccent),color-mix(in srgb,var(--resaccent),#fff 28%));transform-origin:right center}
+.resume.t-minimal .bar{height:3px;background:#e9e9e9;border-radius:0}
+.resume.t-minimal .bar i{border-radius:0;background:#343434}
+.resume.t-executive .bar,.resume.t-corporate .bar{height:8px;background:#e4e6ed}
+.resume.t-creative .bar{height:9px;background:#ece8fa;border:1px solid #ddd4ff}
+.resume.t-creative .bar i{background:linear-gradient(90deg,var(--resaccent),#9b5cff,#00c8d7)}
+.resume.t-technical .bar{height:10px;border-radius:2px;background:repeating-linear-gradient(90deg,#e8eaf2 0,#e8eaf2 7%,#fff 7%,#fff 8%)}
+.resume.t-technical .bar i{border-radius:2px;background:repeating-linear-gradient(90deg,var(--resaccent) 0,var(--resaccent) 7%,transparent 7%,transparent 8%)}
+.resume.t-elegant .rskill{display:grid;grid-template-columns:1fr auto;align-items:center;gap:3px 10px}
+.resume.t-elegant .rskilltop{display:contents}
+.resume.t-elegant .skill-value{grid-column:2;grid-row:1}
+.resume.t-elegant .bar{grid-column:1/-1;height:5px}
+.resume.t-academic .bar{height:4px;background:#e5e5e5;border-radius:0}
+.resume.t-academic .bar i{background:#343434;border-radius:0}
+.resume.t-timeline .bar{height:8px;background:#e8eaf1}
+.resume.t-timeline .bar i{background:linear-gradient(90deg,var(--resaccent),#6c63ff)}
+.resume.t-ats .bar{height:5px;background:#ddd;border-radius:0}
+.resume.t-ats .bar i{background:#303030;border-radius:0}
+@media(max-width:650px){
+  body{overflow-x:hidden}
+  .shell{width:min(100% - 24px,100%)!important}
+  .site-header .nav,.site-header nav{gap:8px;flex-wrap:wrap}
+  .hero{grid-template-columns:1fr!important;gap:18px!important}
+  .hero h1{font-size:clamp(2rem,9vw,3.25rem)!important;line-height:1.2}
+  .hero p{font-size:14px;line-height:1.9}
+  .features{grid-template-columns:1fr!important}
+  .templates{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  .template{min-width:0}
+  .builder{grid-template-columns:minmax(0,1fr)!important;gap:14px!important}
+  .form-panel,.preview,.panel{min-width:0!important;width:100%!important;max-width:100%!important}
+  .form-panel{padding:14px!important}
+  .preview{overflow:hidden!important}
+  .resume-wrap{width:100%!important;max-width:100%!important;overflow-x:auto!important}
+  .resume{width:100%!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
+  .rin{padding:18px!important}
+  .rhead{gap:12px!important;flex-wrap:wrap}
+  .rname{font-size:clamp(20px,6vw,28px)!important;overflow-wrap:anywhere}
+  .rcontact{overflow-wrap:anywhere;word-break:break-word}
+  .rskills{grid-template-columns:1fr!important}
+  .rskill{min-width:0}
+  .form-row,.grid2,.grid3{grid-template-columns:minmax(0,1fr)!important}
+  input,textarea,select,button{max-width:100%}
+  .site-footer .footer-main,.site-footer .footer-bottom,.footer{flex-wrap:wrap;gap:12px}
+}
+@media print{
+  html,body{background:#fff!important;color:#202337!important}
+  #resume{width:100%!important;max-width:none!important;min-width:0!important;overflow:visible!important}
+  #resume .rin{padding:0!important}
+  #resume .rsection{break-inside:auto!important;page-break-inside:auto!important}
+  #resume .rsection h4{break-after:avoid!important;page-break-after:avoid!important}
+  #resume .rskill,#resume .ritem,#resume .rphoto{break-inside:avoid!important;page-break-inside:avoid!important}
+  #resume .bar,#resume .bar i{visibility:visible!important;opacity:1!important}
+  #resume .bar i{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  #resume.t-executive .rhead,#resume.t-creative .rhead{background:var(--resaccent)!important;color:#fff!important}
+  #resume.t-creative .rhead{background:linear-gradient(120deg,var(--resaccent),#34314c)!important}
+  #resume.t-minimal .bar i,#resume.t-academic .bar i,#resume.t-ats .bar i{background:#303030!important}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+}
 </style></head><body>
 <header class="site-header"><div class="top shell"><a class="brand" href="#" aria-label="شیرازه، صفحه اصلی"><span class="logo"><img src="https://my.uploadkon.ir/d/FUomcJJ56w5FCgBVULn7KorXcz9WsR/NzM4NTh8cGFkZA.jpg" alt="لوگوی شیرازه"></span><span class="brand-copy">SHIRAZEH<small>رزومه‌ساز هوشمند</small></span></a><nav class="nav" aria-label="ناوبری اصلی"><a href="#templates">قالب‌ها <span>۱۰</span></a><a href="#builder">رزومه‌ساز</a><a href="#ai">دستیار هوشمند</a></nav><a class="header-cta studio-cta" href="https://alishams.ir" target="_blank" rel="noopener noreferrer"><span class="studio-orb">✦</span><span>استودیو دیجیتال</span><b>↗</b></a></div></header>
 <main class="shell"><section class="hero"><div><span class="badge">✦ رزومه‌ای که مسیرت را روایت می‌کند</span><h1>آینده شغلی‌ات را<br><span class="grad">با یک رزومه متفاوت</span><br>شروع کن.</h1><p>اطلاعاتت را وارد کن، از میان ۱۰ طراحی حرفه‌ای انتخاب کن و رزومه‌ای بساز که مهارت‌ها و تجربه‌ات را با وضوح و اعتمادبه‌نفس نشان بدهد.</p><div class="actions"><a class="btn primary" href="#builder">ساخت رزومه من ←</a><a class="btn" href="#templates">دیدن قالب‌ها</a></div></div><div class="art"><div class="mock"><div class="mockhead"><div class="avatar">ش</div><div><h3>رزومه حرفه‌ای شما</h3><span class="muted">طراحی‌شده با شیرازه</span></div></div><div class="line" style="width:95%"></div><div class="line" style="width:72%"></div><div class="line" style="width:54%"></div><div class="stats"><div class="stat"><b>۱۰</b><small>قالب حرفه‌ای</small></div><div class="stat"><b>AI</b><small>دستیار هوشمند</small></div><div class="stat"><b>PDF</b><small>خروجی آماده</small></div></div><div class="line" style="width:85%;margin-top:23px"></div><div class="line" style="width:64%"></div></div><div class="float f1">✧ پیش‌نمایش زنده</div><div class="float f2">↗ آماده برای قدم بعدی</div></div></section>
@@ -265,7 +329,7 @@ function section(id,html){$("#"+id).innerHTML=html;$("#"+id).closest(".rsection"
 function render(){let s=state();$("#resume").className="resume t-"+s.template;$("#resume").style.setProperty("--resaccent",s.color);setText("rName",s.name||"نام و نام خانوادگی");setText("rTitle",s.title||"عنوان شغلی شما");$("#rContact").innerHTML=[s.email,s.phone,s.location,s.linkedin].filter(Boolean).map(esc).join(" · ");$("#resPhoto").innerHTML=photoData?'<img class="rphoto" alt="تصویر پروفایل" src="'+photoData+'">':"";setText("rSummary",s.summary||"معرفی کوتاه و حرفه‌ای شما اینجا نمایش داده می‌شود.");$("#summarySection").classList.toggle("hide",!s.summary);
 section("rExperience",s.experience.filter(x=>x.role||x.company||x.description).map(x=>'<div class="ritem"><div class="ritemtop"><span>'+esc(x.role||"سمت شغلی")+'</span><span>'+esc([x.start,x.end].filter(Boolean).join(" تا "))+'</span></div><div class="sub">'+esc(x.company)+'</div><div class="desc">'+esc(x.description)+'</div></div>').join(""));
 section("rEducation",s.education.filter(x=>x.degree||x.school).map(x=>'<div class="ritem"><div class="ritemtop"><span>'+esc(x.degree)+'</span><span>'+esc([x.start,x.end].filter(Boolean).join(" تا "))+'</span></div><div class="sub">'+esc(x.school)+(x.details?" · "+esc(x.details):"")+'</div></div>').join(""));
-section("rSkills",s.skills.filter(x=>x.name).map(x=>'<div class="rskill"><div class="rskilltop"><span>'+esc(x.name)+'</span><span>'+x.level+'%</span></div><div class="bar"><i style="width:'+x.level+'%"></i></div></div>').join(""));
+section("rSkills",s.skills.filter(x=>x.name).map(x=>'<div class="rskill"><div class="rskilltop"><span>'+esc(x.name)+'</span><span class="skill-value">'+x.level+'%</span></div><div class="bar" role="img" aria-label="'+esc(x.name)+': '+x.level+' درصد"><i style="width:'+x.level+'%"></i></div></div>').join(""));
 [["rLanguages","languages"],["rCertificates","certificates"],["rProjects","projects"],["rAwards","awards"],["rWebsite","website"]].forEach(([id,k])=>{setText(id,s[k]);$("#"+id).closest(".rsection").classList.toggle("hide",!s[k])});save()}
 function chooseTemplate(id){$("#resume").className="resume t-"+id;$$(".template").forEach(b=>b.classList.toggle("active",b.dataset.id===id));render();save()}
 function showStep(n){step=Math.max(0,Math.min(4,n));$$(".formstep").forEach((e,i)=>e.classList.toggle("hide",i!==step));$$("[data-step]").forEach(b=>b.classList.toggle("active",+b.dataset.step===step));$("#stepLabel").textContent="مرحله "+(step+1)+" از ۵";$("#prev").style.opacity=step===0?".4":"1";$("#next").textContent=step===4?"پایان و مشاهده رزومه ✓":"مرحله بعد ←"}
