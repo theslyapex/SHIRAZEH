@@ -84,33 +84,37 @@ try {
       await page.evaluate(() => { try { localStorage.clear(); } catch {} });
       await page.reload({ waitUntil: "domcontentloaded" });
 
+      const setValueFromLocator = async (locator, value) => locator.evaluate((el, v) => {
+        el.value = v;
+        el.dispatchEvent(new Event("input", { bubbles: true }));
+        el.dispatchEvent(new Event("change", { bubbles: true }));
+      }, value);
+      const setValue = async (selector, value) => setValueFromLocator(page.locator(selector), value);
       for (const field of ["name", "title", "email", "phone", "location", "linkedin", "summary"]) {
-        await page.locator("#" + field).fill(profile[field]);
+        await setValue("#" + field, profile[field]);
       }
-      await page.locator("#languages").fill("فارسی (زبان مادری)؛ انگلیسی (پیشرفته)؛ عربی (مقدماتی)");
-      await page.locator("#certificates").fill("مدیریت حرفه‌ای پروژه · ۱۴۰۲\nتحلیل داده و گزارش‌دهی · ۱۴۰۱\nارتباط مؤثر و مذاکره · ۱۴۰۰");
-      await page.locator("#projects").fill("پروژه بازطراحی فرایندهای سازمانی: تحلیل وضعیت موجود، مصاحبه با ذی‌نفعان، تدوین نقشه راه و تعریف شاخص‌های سنجش موفقیت.\nپروژه داشبورد مدیریتی: تجمیع داده‌های عملیاتی و طراحی گزارش‌های دوره‌ای برای پشتیبانی از تصمیم‌گیری.");
-      await page.locator("#awards").fill("کارمند برتر تیم پروژه · ۱۴۰۲\nتقدیر بابت بهبود فرایند پاسخ‌گویی · ۱۴۰۱");
-      await page.locator("#website").fill("https://portfolio.example.com");
-      const initialJobs = await page.locator("#experienceList .entry").count();
-      for (let i = initialJobs; i < profile.jobs.length; i++) await page.locator("#addExperience").click();
+      await setValue("#languages", "فارسی (زبان مادری)؛ انگلیسی (پیشرفته)؛ عربی (مقدماتی)");
+      await setValue("#certificates", "مدیریت حرفه‌ای پروژه · ۱۴۰۲\\nتحلیل داده و گزارش‌دهی · ۱۴۰۱\\nارتباط مؤثر و مذاکره · ۱۴۰۰");
+      await setValue("#projects", "پروژه بازطراحی فرایندهای سازمانی: تحلیل وضعیت موجود، مصاحبه با ذی‌نفعان، تدوین نقشه راه و تعریف شاخص‌های سنجش موفقیت.\\nپروژه داشبورد مدیریتی: تجمیع داده‌های عملیاتی و طراحی گزارش‌های دوره‌ای برای پشتیبانی از تصمیم‌گیری.");
+      await setValue("#awards", "کارمند برتر تیم پروژه · ۱۴۰۲\\nتقدیر بابت بهبود فرایند پاسخ‌گویی · ۱۴۰۱");
+      await setValue("#website", "https://portfolio.example.com");
+      await page.evaluate(({ jobs, education, skills }) => {
+        while (document.querySelectorAll("#experienceList .entry").length < jobs) addExp();
+        while (document.querySelectorAll("#educationList .entry").length < education) addEdu();
+        while (document.querySelectorAll("#skillsList .skill").length < skills) addSkill();
+      }, { jobs: profile.jobs.length, education: profile.education.length, skills: profile.skills.length });
       const jobEntries = page.locator("#experienceList .entry");
       for (let i = 0; i < profile.jobs.length; i++) {
         const job = profile.jobs[i], entry = jobEntries.nth(i);
-        for (const field of ["role", "company", "start", "end", "description"]) await entry.locator('[data-k="' + field + '"]').fill(job[field]);
+        for (const field of ["role", "company", "start", "end", "description"]) await setValueFromLocator(entry.locator('[data-k="' + field + '"]'), job[field]);
       }
-      const initialEdu = await page.locator("#educationList .entry").count();
-      for (let i = initialEdu; i < profile.education.length; i++) await page.locator("#addEducation").click();
       const eduEntries = page.locator("#educationList .entry");
       for (let i = 0; i < profile.education.length; i++) {
         const edu = profile.education[i], entry = eduEntries.nth(i);
-        for (const field of ["degree", "school", "start", "end", "details"]) await entry.locator('[data-k="' + field + '"]').fill(edu[field]);
+        for (const field of ["degree", "school", "start", "end", "details"]) await setValueFromLocator(entry.locator('[data-k="' + field + '"]'), edu[field]);
       }
       const skillRows = page.locator("#skillsList .skill");
-      for (let i = 0; i < profile.skills.length; i++) {
-        if (i >= await skillRows.count()) await page.locator("#addSkill").click();
-        await skillRows.nth(i).locator('[data-k="skill"]').fill(profile.skills[i]);
-      }
+      for (let i = 0; i < profile.skills.length; i++) await setValueFromLocator(skillRows.nth(i).locator('[data-k="skill"]'), profile.skills[i]);
       await page.evaluate(id => chooseTemplate(id), template);
       await page.evaluate(() => document.fonts.ready);
       await page.emulateMedia({ media: "print" });
