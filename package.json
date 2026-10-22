@@ -2,7 +2,7 @@
   "name": "shirazeh",
   "version": "1.0.0",
   "private": true,
-  "description": "SHIRAZEH - AI-powered professional resume builder",
+  "description": "SHIRAZEH - Persian professional resume builder",
   "type": "module",
   "scripts": {
     "start": "node server.js",
