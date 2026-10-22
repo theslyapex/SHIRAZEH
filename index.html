@@ -543,6 +543,20 @@
 /* Lightweight copy protection for page text; editable resume fields remain usable. */
 html,body,body *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none}
 input,textarea,select,[contenteditable="true"],[contenteditable=""],.resume [contenteditable]{-webkit-user-select:text!important;user-select:text!important;-webkit-touch-callout:default}
+
+/* Final print isolation: render only the resume, never the surrounding builder UI. */
+@media print {
+  html, body { width:100%!important; min-width:0!important; min-height:0!important; margin:0!important; padding:0!important; background:#fff!important; overflow:visible!important; }
+  body * { visibility:hidden!important; }
+  #resume, #resume * { visibility:visible!important; }
+  #resume { position:absolute!important; inset-block-start:0!important; inset-inline-start:0!important; width:100%!important; max-width:none!important; min-width:0!important; margin:0!important; overflow:visible!important; box-shadow:none!important; }
+  #resume .rin { width:100%!important; max-width:none!important; box-sizing:border-box!important; }
+  #resume .rhead { min-width:0!important; }
+  #resume #resPhoto { display:block!important; flex:0 0 auto!important; width:auto!important; min-width:0!important; margin:0!important; padding:0!important; }
+  #resume .rphoto { display:block!important; width:78px!important; height:88px!important; max-width:none!important; min-width:78px!important; flex:0 0 78px!important; object-fit:cover!important; object-position:center center!important; box-sizing:border-box!important; margin:0!important; }
+  #resume .rhead>div:last-child { min-width:0!important; flex:1 1 auto!important; }
+  #resume img { print-color-adjust:exact!important; -webkit-print-color-adjust:exact!important; }
+}
 </style></head><body>
 <header class="site-header"><div class="top shell"><a class="brand" href="#" aria-label="شیرازه، صفحه اصلی"><span class="logo"><img src="https://my.uploadkon.ir/d/T85IFojBeIBHFPC1FEIrrbyLYHjW5r/NzM4OTN8cGFkZA.png" alt="لوگوی شیرازه"></span><span class="brand-copy">SHIRAZEH<small>رزومه‌ساز حرفه‌ای</small></span></a><nav class="nav" aria-label="ناوبری اصلی"><a href="#templates">قالب‌ها <span>۱۰</span></a><a href="#builder">رزومه‌ساز</a><a href="#templateGuide">انتخاب قالب مناسب</a></nav><a class="header-cta studio-cta" href="https://alishams.ir" target="_blank" rel="noopener noreferrer"><span class="studio-orb">✦</span><span>استودیو دیجیتال</span><b>↗</b></a></div></header>
 <main class="shell"><section class="hero"><div><span class="badge">✦ رزومه‌ای که مسیرت را روایت می‌کند</span><h1>آینده شغلی‌ات را<br><span class="grad">با یک رزومه متفاوت</span><br>شروع کن.</h1><p>اطلاعاتت را وارد کن، از میان ۱۰ طراحی حرفه‌ای انتخاب کن و رزومه‌ای بساز که مهارت‌ها و تجربه‌ات را با وضوح و اعتمادبه‌نفس نشان بدهد.</p><div class="actions"><a class="btn primary" href="#builder">ساخت رزومه من ←</a><a class="btn" href="#templates">دیدن قالب‌ها</a></div></div><div class="art"><div class="mock"><div class="mockhead"><div class="avatar">ش</div><div><h3>رزومه حرفه‌ای شما</h3><span class="muted">طراحی‌شده با شیرازه</span></div></div><div class="line" style="width:95%"></div><div class="line" style="width:72%"></div><div class="line" style="width:54%"></div><div class="stats"><div class="stat"><b>۱۰</b><small>قالب حرفه‌ای</small></div><div class="stat"><b>✦</b><small>پیشنهاد قالب</small></div><div class="stat"><b>PDF</b><small>خروجی آماده</small></div></div><div class="line" style="width:85%;margin-top:23px"></div><div class="line" style="width:64%"></div></div><div class="float f1">✧ پیش‌نمایش زنده</div><div class="float f2">↗ آماده برای قدم بعدی</div></div></section>
