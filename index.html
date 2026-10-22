@@ -580,21 +580,7 @@ const sampleProfiles={
   elegant:{name:"یلدا فرهمند",role:"مشاور برند و بازاریابی",email:"yalda.farahmand@example.com",phone:"۰۹۱۲ ۵۵۵ ۳۳۱۱",location:"تهران، ایران",summary:"مشاور برند با تجربه در تدوین پیام برند، تحلیل مخاطب و طراحی برنامه‌های بازاریابی یکپارچه. توانمند در تبدیل بینش مشتری به روایت و تجربه‌ای منسجم.",jobs:[["مشاور برند","آژانس مسیر","۱۴۰۲ تا اکنون",["تدوین چارچوب پیام برند و راهنمای لحن ارتباطی","تحلیل بازخورد مخاطبان و پیشنهاد مسیرهای بهبود"]],["کارشناس بازاریابی","نگاه نو","۱۳۹۹ تا ۱۴۰۲",["برنامه‌ریزی کمپین‌های محتوایی و پایش شاخص‌های عملکرد"]]],education:"کارشناسی ارشد بازاریابی · دانشگاه علامه طباطبایی · ۱۳۹۷–۱۳۹۹",skills:["استراتژی برند","تحلیل مخاطب","داستان‌گویی","برنامه‌ریزی"],accent:"#9a7652"},
   timeline:{name:"محمدرضا زمانی",role:"مدیر پروژه",email:"m.zamani@example.com",phone:"۰۹۱۵ ۳۳۳ ۸۸۷۷",location:"مشهد، ایران",summary:"مدیر پروژه با تجربه هماهنگی تیم‌های چندتخصصی، برنامه‌ریزی تحویل و مدیریت ریسک. متمرکز بر شفافیت، اولویت‌بندی و ایجاد جریان کاری قابل پیش‌بینی.",jobs:[["مدیر پروژه دیجیتال","راهکارهای پویا","۱۴۰۲ تا اکنون",["برنامه‌ریزی اسپرینت‌ها، مدیریت وابستگی‌ها و گزارش وضعیت","هماهنگی تیم محصول، طراحی و توسعه برای تحویل به‌موقع"]],["هماهنگ‌کننده پروژه","توسعه‌گران شرق","۱۳۹۹ تا ۱۴۰۲",["پیگیری زمان‌بندی، ثبت ریسک‌ها و مستندسازی تصمیم‌ها"]]],education:"کارشناسی مهندسی صنایع · دانشگاه فردوسی مشهد · ۱۳۹۵–۱۳۹۹",skills:["مدیریت پروژه","Agile","مدیریت ریسک","ارتباطات"],accent:"#2d8a7d"},
   ats:{name:"مریم شریفی",role:"تحلیلگر کسب‌وکار",email:"maryam.sharifi@example.com",phone:"۰۹۱۲ ۷۷۷ ۴۴۵۵",location:"تهران، ایران",summary:"تحلیلگر کسب‌وکار با تجربه مستندسازی نیازمندی‌ها، تحلیل فرایند و همکاری با ذی‌نفعان برای تعریف راهکارهای قابل اجرا. مسلط به گزارش‌دهی و تبدیل داده به پیشنهاد عملیاتی.",jobs:[["تحلیلگر کسب‌وکار","سامانه‌پردازان","۱۴۰۲ تا اکنون",["جمع‌آوری و مستندسازی نیازمندی‌های کاربران و ذی‌نفعان","تهیه گزارش شاخص‌های عملیاتی و پشتیبانی تصمیم‌گیری محصول"]],["کارشناس عملیات","پیشرو داده","۱۴۰۰ تا ۱۴۰۲",["تحلیل جریان کار و پیشنهاد اصلاح فرایندهای پرتکرار"]]],education:"کارشناسی مدیریت صنعتی · دانشگاه الزهرا · ۱۳۹۶–۱۴۰۰",skills:["تحلیل نیازمندی","Excel","SQL","مستندسازی"],accent:"#
-/* Branded in-page color picker; avoids the bright native Android color popup. */
-(()=>{const $=id=>document.getElementById(id),input=$("color"),modal=$("colorModal"),swatches=$("colorSwatches"),hex=$("customHex"),hue=$("customHue"),sat=$("customSat");if(!input||!modal||!swatches)return;let pending=input.value||"#6652b9",previous=pending;
-const norm=v=>/^#[0-9a-f]{6}$/i.test(v)?v.toLowerCase():null;
-function hsv(h,s,v=0.72){s/=100;let c=v*s,x=c*(1-Math.abs((h/60)%2-1)),m=v-c,r=0,g=0,b=0;if(h<60){r=c;g=x}else if(h<120){r=x;g=c}else if(h<180){g=c;b=x}else if(h<240){g=x;b=c}else if(h<300){r=x;b=c}else{r=c;b=x}return"#"+[r,g,b].map(n=>Math.round((n+m)*255).toString(16).padStart(2,"0")).join("")}
-function setPending(v){v=norm(v);if(!v)return;pending=v;hex.value=v; $("dialogColorChip").style.background=v;$("dialogColorText").textContent="رنگ انتخابی: "+v.toUpperCase();swatches.querySelectorAll(".color-swatch").forEach(b=>b.classList.toggle("selected",b.dataset.color.toLowerCase()===v));const n=parseInt(v.slice(1),16),r=(n>>16)&255,g=(n>>8)&255,b=n&255,max=Math.max(r,g,b)/255,min=Math.min(r,g,b)/255,delta=max-min;let h=0;if(delta){if(max===r/255)h=60*(((g-b)/255/delta)%6);else if(max===g/255)h=60*((b-r)/255/delta+2);else h=60*((r-g)/255/delta+4)}if(h<0)h+=360;hue.value=Math.round(h);sat.value=Math.round(max?delta/max*100:0)}
-function open(){previous=input.value||"#6652b9";setPending(previous);modal.hidden=false;document.body.style.overflow="hidden";$("closeColorPicker").focus()}
-function close(){modal.hidden=true;document.body.style.overflow="";$("openColorPicker").focus()}
-$("openColorPicker").addEventListener("click",open);$("closeColorPicker").addEventListener("click",close);$("cancelColorPicker").addEventListener("click",close);modal.addEventListener("click",e=>{if(e.target===modal)close()});document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!modal.hidden)close()});
-swatches.addEventListener("click",e=>{const b=e.target.closest("[data-color]");if(b)setPending(b.dataset.color)});
-hue.addEventListener("input",()=>setPending(hsv(+hue.value,+sat.value)));sat.addEventListener("input",()=>setPending(hsv(+hue.value,+sat.value)));
-hex.addEventListener("input",()=>{const v=norm(hex.value);if(v){pending=v;$("dialogColorChip").style.background=v;$("dialogColorText").textContent="رنگ انتخابی: "+v.toUpperCase();swatches.querySelectorAll(".color-swatch").forEach(b=>b.classList.toggle("selected",b.dataset.color.toLowerCase()===v))}});
-$("applyColorPicker").addEventListener("click",()=>{const v=norm(hex.value)||pending;input.value=v;$("colorTriggerChip").style.background=v;input.dispatchEvent(new Event("input",{bubbles:true}));input.dispatchEvent(new Event("change",{bubbles:true}));close()});
-input.addEventListener("change",()=>{$("colorTriggerChip").style.background=input.value});
-setPending(input.value);
-})();
+
 
 444b5a"}
 
@@ -629,4 +615,34 @@ buildTemplates();initMotion();load();if(!$("#skillsList").children.length)defaul
 $$("[data-step]").forEach(b=>b.onclick=()=>showStep(+b.dataset.step));$("#next").onclick=()=>{if(step===0&&!val("name")){toast("نام و نام خانوادگی را وارد کن.");$("#name").focus();return}if(step<4)showStep(step+1);else{$("#resume").scrollIntoView({behavior:"smooth"});toast("پیش‌نمایش رزومه آماده است.")}};$("#prev").onclick=()=>showStep(step-1);$("#addExperience").onclick=()=>{addExp();render()};$("#addEducation").onclick=()=>{addEdu();render()};$("#addSkill").onclick=()=>addSkill();$("#form").oninput=render;$("#color").oninput=render;$("#print").onclick=()=>{render();window.print()};
 $("#photo").onchange=e=>{let f=e.target.files?.[0];if(!f)return;if(!f.type.startsWith("image/")||f.size>8*1024*1024){toast("فایل تصویری معتبر با حجم کمتر از ۸ مگابایت انتخاب کن.");return}let rd=new FileReader();rd.onload=()=>{let im=new Image();im.onload=()=>{let c=document.createElement("canvas"),scale=Math.min(1,500/Math.max(im.width,im.height));c.width=im.width*scale;c.height=im.height*scale;c.getContext("2d").drawImage(im,0,0,c.width,c.height);photoData=c.toDataURL("image/jpeg",.84);$("#photoPreview").src=photoData;render()};im.src=rd.result};rd.readAsDataURL(f)};
 $("#clear").onclick=()=>{if(!confirm("اطلاعات این رزومه پاک شود؟"))return;localStorage.removeItem(key);photoData="";$("#form").reset();$("#experienceList").innerHTML="";$("#educationList").innerHTML="";$("#skillsList").innerHTML="";defaults.skills.forEach(addSkill);addExp();addEdu();$("#photoPreview").removeAttribute("src");chooseTemplate("modern");showStep(0);render();toast("اطلاعات پاک شد.")};$$("[data-ai]").forEach(b=>b.onclick=()=>ai(b.dataset.ai));
-</script></body></html>
+</script>
+<script>
+(function(){
+ var colorInput=document.getElementById("color");
+ var modal=document.getElementById("colorModal");
+ var openBtn=document.getElementById("openColorPicker");
+ if(!colorInput||!modal||!openBtn)return;
+ var pending=colorInput.value||"#6652b9";
+ function paint(v){
+  pending=v;
+  document.getElementById("customHex").value=v;
+  document.getElementById("dialogColorChip").style.background=v;
+  document.getElementById("colorTriggerChip").style.background=v;
+  document.getElementById("dialogColorText").textContent="رنگ انتخابی: "+v.toUpperCase();
+  modal.querySelectorAll("[data-color]").forEach(function(b){b.classList.toggle("selected",b.dataset.color.toLowerCase()===v.toLowerCase())});
+ }
+ function close(){modal.hidden=true;document.body.style.overflow=""}
+ openBtn.addEventListener("click",function(){paint(colorInput.value||"#6652b9");modal.hidden=false;document.body.style.overflow="hidden"});
+ document.getElementById("closeColorPicker").addEventListener("click",close);
+ document.getElementById("cancelColorPicker").addEventListener("click",close);
+ modal.addEventListener("click",function(e){if(e.target===modal)close()});
+ modal.querySelectorAll("[data-color]").forEach(function(b){b.addEventListener("click",function(){paint(b.dataset.color)})});
+ document.getElementById("customHex").addEventListener("input",function(e){if(/^#[0-9a-f]{6}$/i.test(e.target.value))paint(e.target.value)});
+ document.getElementById("customHue").addEventListener("input",function(e){var h=+e.target.value;var c="#"+Math.round(127+127*Math.sin((h+0)*Math.PI/180)).toString(16).padStart(2,"0")+Math.round(127+127*Math.sin((h+120)*Math.PI/180)).toString(16).padStart(2,"0")+Math.round(127+127*Math.sin((h+240)*Math.PI/180)).toString(16).padStart(2,"0");paint(c)});
+ document.getElementById("customSat").addEventListener("input",function(){});
+ document.getElementById("applyColorPicker").addEventListener("click",function(){if(/^#[0-9a-f]{6}$/i.test(pending)){colorInput.value=pending;colorInput.dispatchEvent(new Event("input",{bubbles:true}));colorInput.dispatchEvent(new Event("change",{bubbles:true}))}close()});
+ document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!modal.hidden)close()});
+ paint(colorInput.value||"#6652b9");
+})();
+</script>
+</body></html>
