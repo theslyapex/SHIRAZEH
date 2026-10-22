@@ -14,7 +14,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Serve the static resume builder; no AI/API endpoints are included.
+// Serve the static resume builder.
 app.use(express.static(path.join(__dirname), { extensions: ["html"] }));
 app.get("*", (req, res) => res.sendFile(path.join(__dirname, "index.html")));
 app.listen(PORT, () => console.log(`SHIRAZEH is running on port ${PORT}`));
