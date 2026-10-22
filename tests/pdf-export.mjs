@@ -123,18 +123,24 @@ try {
       await fs.writeFile(pdfPath, pdf);
       const parsed = await pdfjs.getDocument({ data: new Uint8Array(pdf) }).promise;
       let extracted = "";
+      const pageTexts = [];
       for (let n = 1; n <= parsed.numPages; n++) {
         const pg = await parsed.getPage(n);
         const content = await pg.getTextContent();
-        extracted += content.items.map(item => item.str || "").join(" ");
+        const pageText = content.items.map(item => item.str || "").join(" ").trim();
+        pageTexts.push(pageText);
+        extracted += pageText + " ";
       }
-      const row = { profile: profile.key, template, pages: parsed.numPages, bytes: pdf.length, hasPersianText: /[\u0600-\u06FF]/.test(extracted), file: path.relative(root, pdfPath) };
+      const row = { profile: profile.key, template, pages: parsed.numPages, bytes: pdf.length, hasPersianText: /[\u0600-\u06FF]/.test(extracted), lastPageTextLength: pageTexts.at(-1)?.length || 0, file: path.relative(root, pdfPath) };
       results.push(row);
       try {
         assert.ok(pdf.length > 5000, "PDF output unexpectedly small");
         assert.ok(parsed.numPages >= 1, "PDF should contain at least one page");
         assert.ok(row.hasPersianText, "Extracted PDF text should contain Persian/Arabic Unicode");
-        if (profile.key === "long") assert.ok(parsed.numPages >= 2, "Long resume should span multiple pages");
+        if (profile.key === "long") {
+          assert.ok(parsed.numPages >= 2, "Long resume should span multiple pages");
+          assert.ok(row.lastPageTextLength >= 100, "Long resume should not end with a nearly empty orphan page");
+        }
         assert.deepEqual(pageErrors, [], "Browser JavaScript errors detected");
         console.log("PASS", JSON.stringify(row));
       } catch (error) {
