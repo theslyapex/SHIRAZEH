@@ -1,0 +1,41 @@
+name: PDF export quality
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "tests/pdf-export.mjs"
+      - ".github/workflows/pdf-quality.yml"
+  pull_request:
+    paths:
+      - "index.html"
+      - "tests/pdf-export.mjs"
+      - ".github/workflows/pdf-quality.yml"
+  workflow_dispatch:
+
+jobs:
+  pdf-export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install browser test dependencies
+        run: |
+          npm install --no-save playwright pdfjs-dist
+          npx playwright install --with-deps chromium
+      - name: Generate and validate PDFs for all templates
+        run: node tests/pdf-export.mjs
+      - name: Upload PDF test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shirazeh-pdf-export-test-results
+          path: test-artifacts/pdf/
+          if-no-files-found: warn
+          retention-days: 14
